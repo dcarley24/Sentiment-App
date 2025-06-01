@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sincerity Analysis</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+<div class="container py-5">
+    <h1 class="mb-4">Sincerity Analysis Summary</h1>
+
+    <p><strong>Total Posts Analyzed:</strong> {{ genuine_count + not_genuine_count }}</p>
+    <p><strong>Genuine Posts:</strong> {{ genuine_count }}</p>
+    <p><strong>Not Genuine Posts:</strong> {{ not_genuine_count }}</p>
+
+    <hr>
+
+    <h3>Average Scores by Label</h3>
+    <table class="table table-bordered bg-white">
+        <thead>
+            <tr>
+                <th>Feature</th>
+                <th>Genuine</th>
+                <th>Not Genuine</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td>Final Score</td><td>{{ avg_genuine_score }}</td><td>{{ avg_not_genuine_score }}</td></tr>
+            <tr><td>Sentiment Balance</td><td>{{ avg_genuine_sentiment }}</td><td>{{ avg_not_genuine_sentiment }}</td></tr>
+            <tr><td>Readability</td><td>{{ avg_genuine_readability }}</td><td>{{ avg_not_genuine_readability }}</td></tr>
+            <tr><td>Lexical Diversity (Verbosity)</td><td>{{ avg_genuine_lexical_diversity }}</td><td>{{ avg_not_genuine_lexical_diversity }}</td></tr>
+            <tr><td>Buzzword Use</td><td>{{ avg_genuine_buzzwords }}</td><td>{{ avg_not_genuine_buzzwords }}</td></tr>
+            <tr><td>Pronoun Use</td><td>{{ avg_genuine_pronouns }}</td><td>{{ avg_not_genuine_pronouns }}</td></tr>
+            <tr><td>Stopword Ratio</td><td>{{ avg_genuine_stopwords }}</td><td>{{ avg_not_genuine_stopwords }}</td></tr>
+            <tr><td>ALL CAPS Use</td><td>{{ avg_genuine_caps }}</td><td>{{ avg_not_genuine_caps }}</td></tr>
+            <tr><td>Punctuation Intensity</td><td>{{ avg_genuine_punctuation }}</td><td>{{ avg_not_genuine_punctuation }}</td></tr>
+            <tr><td>Sentence Length Variance</td><td>{{ avg_genuine_variance }}</td><td>{{ avg_not_genuine_variance }}</td></tr>
+            <tr>
+                <td>Engagement Style (Links, Tags, Mentions)</td>
+                <td>{{ avg_genuine_engagement }}</td>
+                <td>{{ avg_not_genuine_engagement }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <p class="text-muted">
+        <em>Note:</em> The "Engagement Style" score reflects use of hashtags, links, or mentions.
+        A higher score indicates more external references or promotional language, which may still be sincere depending on context.
+    </p>
+
+    <hr>
+
+    <h4>T-Test Between Labels</h4>
+    <p><strong>t-statistic:</strong> {{ t_stat }}</p>
+    <p><strong>p-value:</strong> {{ p_value }}</p>
+    <p class="text-muted"><em>Smaller p-values suggest a statistically significant difference between sincere and not sincere groups.</em></p>
+
+</div>
+</body>
+</html>

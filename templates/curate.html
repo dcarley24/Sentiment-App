@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Curate Posts</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body class="container py-5">
+    <h2>Curate New Posts</h2>
+
+    <!-- OCR Upload -->
+    <form action="{{ url_for('ocr_extract') }}" method="post" enctype="multipart/form-data" class="mb-5">
+        <h5>Extract Text from Image</h5>
+        <div class="mb-3">
+            <input type="file" class="form-control" name="ocr_image" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Extract Text</button>
+    </form>
+
+    <!-- Paste & Submit -->
+    <form action="{{ url_for('save_selection') }}" method="post" class="mb-5">
+        <h5>Paste or Review Extracted Text</h5>
+        <!-- Label Selection -->
+        <div class="mb-3">
+    <label class="form-label">Label this post as:</label>
+    <select name="label" class="form-select" required>
+        <option value="1" {% if label == 1 %}selected{% endif %}>Genuine</option>
+        <option value="0" {% if label == 0 %}selected{% endif %}>Not Genuine</option>
+    </select>
+        </div>
+
+        <div class="mb-3">
+            <textarea name="selected_text" class="form-control" rows="10">{{ extracted or '' }}</textarea>
+        </div>
+        <button type="submit" class="btn btn-success">Add to Dataset</button>
+    </form>
+
+    {% if scores %}
+        <div class="card border-success mb-4">
+            <div class="card-header bg-success text-white">Post Analyzed</div>
+            <div class="card-body">
+                <p><strong>Final Score:</strong> {{ final_score }} ({{ "Genuine" if label == 1 else "Not Genuine" }})</p>
+                <ul class="list-group">
+                    {% for key, value in scores.items() %}
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            {{ key.replace('_', ' ').title() }}
+                            <span class="badge bg-primary rounded-pill">{{ '%.3f'|format(value) }}</span>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    {% endif %}
+
+    <a href="{{ url_for('index') }}" class="btn btn-secondary">Back to Home</a>
+</body>
+</html>

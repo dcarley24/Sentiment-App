@@ -1,0 +1,8 @@
+-- schema.sql
+DROP TABLE IF EXISTS posts;
+
+CREATE TABLE posts (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    text TEXT NOT NULL,
+    label INTEGER DEFAULT NULL
+);

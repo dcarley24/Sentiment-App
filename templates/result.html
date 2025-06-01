@@ -1,0 +1,16 @@
+<!doctype html>
+<html>
+<head><title>Result</title></head>
+<body>
+    <h2>Sincerity Score: {{ final_score }}/10</h2>
+    <table border="1">
+        <tr><th>Feature</th><th>Score</th></tr>
+        {% for key, val in scores.items() %}
+        <tr><td>{{ key }}</td><td>{{ "%.2f"|format(val) }}</td></tr>
+        {% endfor %}
+    </table>
+    <hr>
+    <pre>{{ text }}</pre>
+    <a href="/">Back</a>
+</body>
+</html>
