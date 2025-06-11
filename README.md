@@ -4,14 +4,14 @@ This is a lightweight Flask-based web application for analyzing the sincerity of
 
 ## Features
 
-- 🎥 Upload text or video files (MP4, MOV, AVI)
-- 🔊 Automatic transcription using OpenAI Whisper
-- 📊 Sentiment scoring via VADER (NLTK)
-- 📚 Readability analysis with Textstat
-- 📈 Lexical diversity and verbosity metrics
-- 📂 SQLite-backed storage and labeling
-- 🖼️ Results visualization with compact UI
-- 🧠 Composite sincerity score (0–10 scale)
+- Upload text or video files (MP4, MOV, AVI)
+- Automatic transcription using OpenAI Whisper
+- Sentiment scoring via VADER (NLTK)
+- Readability analysis with Textstat
+- Lexical diversity and verbosity metrics
+- SQLite-backed storage and labeling
+- Results visualization with compact UI
+- Composite sincerity score (0–10 scale)
 
 ## Technologies Used
 
